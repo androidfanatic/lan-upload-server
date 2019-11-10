@@ -25,10 +25,20 @@
       id="upload"
       ondrop="dropHandler(event);"
       ondragover="dragOverHandler(event);"
+      onclick="clickHandler()"
     >
       DROP FILES OR CLICK TO UPLOAD
+      <input
+        id="file"
+        type="file"
+        style="display: none"
+        onchange="uploadFile(this.files[0])"
+      />
     </div>
     <script>
+      function clickHandler() {
+        document.querySelector('#file').click()
+      }
       function dropHandler(ev) {
         console.log("File(s) dropped");
         ev.preventDefault();
