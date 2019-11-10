@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>upload-server</title>
+    <style>
+      body {
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: monospace;
+      }
+      #upload {
+        width: 60vw;
+        height: 40vh;
+        border: 5px dashed #aaa;
+        color: #666;
+        font-weight: 600;
+        display: grid;
+        place-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="upload"
+      ondrop="dropHandler(event);"
+      ondragover="dragOverHandler(event);"
+    >
+      DROP FILES OR CLICK TO UPLOAD
+    </div>
+    <script>
+      function dropHandler(ev) {
+        console.log("File(s) dropped");
+        ev.preventDefault();
+        if (ev.dataTransfer.items) {
+          for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+            if (ev.dataTransfer.items[i].kind === "file") {
+              var file = ev.dataTransfer.items[i].getAsFile();
+              uploadFile(file);
+            }
+          }
+        } else {
+          for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+            uploadFile(ev.dataTransfer.files[i]);
+          }
+        }
+      }
+      function dragOverHandler(ev) {
+        ev.preventDefault();
+      }
+      function uploadFile(file) {
+        let formData = new FormData();
+        formData.append("file", file);
+        fetch("/upload", {
+          method: "POST",
+          body: formData
+        }).then(console.log).catch(console.error);
+      }
+    </script>
+  </body>
+</html>

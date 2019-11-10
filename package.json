@@ -1,0 +1,15 @@
+{
+  "name": "lan-upload-server",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "lan-upload-server": "bin/index.js"
+  },
+  "author": "Manish Raj",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^4.0.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  }
+}
