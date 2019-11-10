@@ -17,11 +17,11 @@ const upload = multer({
   })
 });
 
+app.use('/', express.static(process.cwd()));
 app.post('/upload', upload.single('file'), (req, res) => {
   console.log(req.file);
   res.end('ok');
 })
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
