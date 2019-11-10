@@ -1,6 +1,6 @@
 {
   "name": "lan-upload-server",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple http server that allows anyone within same LAN to upload files to current directory",
   "bin": {
     "lan-upload-server": "bin/index.js"
